@@ -60,7 +60,7 @@ public interface DeathNote {
         The individuals who lose the ownership of the Death Note will also lose their memory
         of the usage of the Death Note. This does not mean that he will lose all the memory
         from the day he owned it to the day he loses possession, but means he will only lose
-        the memory involving the Death Note.
+        the memory invol    ving the Death Note.
         """,
         """
         The number of pages of the Death Note will never run out.
@@ -137,4 +137,10 @@ public interface DeathNote {
      * @return true if the given name is written in this DeathNote, false otherwise
      */
     boolean isNameWritten(String name);
+
+    /**
+     * 
+     * @return an integer representig how many names have been written in the deathnote
+     */
+    int getNamesWritten();
 }

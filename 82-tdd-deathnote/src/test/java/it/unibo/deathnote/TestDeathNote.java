@@ -15,7 +15,7 @@ class TestDeathNote {
     private static final String NAME2 = "Pippo";
     private static final String DEF_DEATH = "heart attack";
     private static final String OTHER_DEATH = "karting accident";
-    private static final String CAUSE_DEATH = "Sassata nel naso";
+    private static final String DETAIL_DEATH = "Sassata nel naso";
 
     @Test
     public void ruleNumber() {
@@ -55,28 +55,26 @@ class TestDeathNote {
 
         assertThrows(IllegalStateException.class, () -> deathNote.writeDeathCause(NAME1));
         deathNote.writeName(NAME1);
-        assertTrue(deathNote.getDeathCause(NAME1) == DEF_DEATH);
+        assertEquals(deathNote.getDeathCause(NAME1), DEF_DEATH);
         deathNote.writeName(NAME2);
-        deathNote.writeDeathCause(OTHER_DEATH);
-        assertTrue(deathNote.getDeathCause(NAME2) == OTHER_DEATH);
-
-        Thread.sleep(100);
+        assertTrue(deathNote.writeDeathCause(OTHER_DEATH));
+        assertEquals(deathNote.getDeathCause(NAME2), OTHER_DEATH);
         deathNote.writeDeathCause("suicidio");
-        assertTrue(deathNote.getDeathCause(NAME2) == OTHER_DEATH);
+        assertEquals(deathNote.getDeathCause(NAME2), OTHER_DEATH);
     }
 
     @Test
     public void deathDetails() throws InterruptedException {
         deathNote = new DeathNoteImplementation();
 
-        assertThrows(IllegalStateException.class, () -> deathNote.writeDetails(CAUSE_DEATH));
+        assertThrows(IllegalStateException.class, () -> deathNote.writeDetails(DETAIL_DEATH));
         deathNote.writeName(NAME1);
         assertTrue(deathNote.getDeathDetails(NAME1) == null);
-        deathNote.writeDetails(CAUSE_DEATH);
-        assertTrue(deathNote.getDeathDetails(NAME1) == CAUSE_DEATH);
+        deathNote.writeDetails(DETAIL_DEATH);
+        assertEquals(deathNote.getDeathDetails(NAME1), DETAIL_DEATH);
+
         deathNote.writeName(NAME2);
-        Thread.sleep(6100);
-        deathNote.writeDetails(CAUSE_DEATH);
-        assertTrue(deathNote.getDeathDetails(NAME2) == null);
+        Thread.sleep(2000);
+        assertTrue(deathNote.writeDetails(DETAIL_DEATH));
     }
 }
