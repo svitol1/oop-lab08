@@ -1,13 +1,16 @@
 package it.unibo.mvc.view;
 
-import javax.swing.JOptionPane;
-
 import it.unibo.mvc.api.DrawNumberController;
 import it.unibo.mvc.api.DrawNumberView;
 import it.unibo.mvc.api.DrawResult;
 
+
 public class DrawNumberOutputOnlyView implements DrawNumberView{
     private static final String NEW_GAME = ": a new game starts!";
+
+    public DrawNumberOutputOnlyView(){
+        //lol
+    }
 
     @Override
     public void setController(DrawNumberController observer) {
